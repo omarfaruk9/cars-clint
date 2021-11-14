@@ -1,0 +1,21 @@
+.about {
+    margin-top: ;
+    /* border: 2px solid skyblue; */
+    background-image: linear-gradient(to bottom, #ffffff, #e6e9f6, #c5d6ee, #9cc6e3, #69b6d4);
+    padding: 30px 0;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.about:hover {
+    box-shadow: 1px 1px 10px black;
+}
+
+.img {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid gray;
+}
