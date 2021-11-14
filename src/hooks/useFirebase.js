@@ -11,16 +11,20 @@ const useFirebase = () => {
     const auth = getAuth();
     const [user, setUser] = useState({});
     const [error, setError] = useState("");
-
+    const [isAdmin, setIsAdmin] = useState(false);
+    // console.log(isAdmin);
     const [isLoding, setIsLoading] = useState(true);
+
+
 
     // Create new user with Gmail 
     const registerNewUser = (email, password, name, location, history) => {
+        // console.log(email, name);
         setIsLoading(true)
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                handleAdduser(result.user?.email, result.user?.displayName)
                 handleName(name)
+                handleAdduser(email, name)
                 // console.log(result.user);
                 history.push('/login')
                 setError('');
@@ -34,17 +38,17 @@ const useFirebase = () => {
     // add user database 
     const handleAdduser = (email, userName) => {
         // alert(email, userName, method)
-        const newUser = { email, userName };
-
-        fetch(`https://frozen-anchorage-07301.herokuapp.com/users`, {
-            method: 'POST',
+        console.log(email, userName);
+        const newUser = { email, userName }
+        console.log(newUser);
+        fetch("https://frozen-anchorage-07301.herokuapp.com/users", {
+            method: "POST",
             headers: {
-                'context-type': 'application/json'
+                "content-type": "application/json"
             },
             body: JSON.stringify(newUser)
         })
-            .then(res => res.json())
-            .then(data => console.log(data))
+            .then()
     }
 
     // login user 
@@ -100,6 +104,16 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+    useEffect(() => {
+        fetch(`https://frozen-anchorage-07301.herokuapp.com/admin/${user.email}`)
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                setIsAdmin(result)
+                // console.log(result.admin);
+            })
+    }, [user.email]);
+
     return {
         user,
         handleName,
@@ -107,6 +121,7 @@ const useFirebase = () => {
         loginUser,
         isLoding,
         logOut,
+        isAdmin
     }
 }
 export default useFirebase;

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 
 const Admin = () => {
     const [email, setEmail] = useState('');
+    console.log(email);
 
     const handleOnBlur = (e) => {
         setEmail(e.target.value);
@@ -10,9 +11,15 @@ const Admin = () => {
     }
 
     const handleMakeAdmin = e => {
-
         e.preventDefault();
+        fetch(`https://frozen-anchorage-07301.herokuapp.com/makeadmin/${email}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            }
+        })
     }
+
     return (
         <Container>
             <div className="text-center">

@@ -7,8 +7,12 @@ import Review from '../Review/Review';
 import AddService from '../AddService/AddService';
 import AllOders from '../AllOders/AllOders';
 import MangeAllService from '../MangeAllService/MangeAllService';
+import useAuth from '../../../hooks/useAuth';
+import userEvent from '@testing-library/user-event';
 
 const DashBoard = () => {
+    const { isAdmin, user } = useAuth();
+    console.log(isAdmin);
     let { path, url } = useRouteMatch();
     return (
         <>
@@ -18,35 +22,44 @@ const DashBoard = () => {
                     <h3 className="text-success mb-5">Dash Board</h3>
                     <div>
                         {/* for both  */}
+
                         <div>
                             <li className="list-unstyled mx-0 my-2">
                                 <Link to="/" className="text-decoration-none text-light fs-6 fw-bold">Home</Link>
                             </li>
                         </div>
-                        <div className="for-client">
-                            <li className="list-unstyled mx-0 my-2">
-                                <Link to={`${url}`} className="text-decoration-none text-light fs-6 fw-bold">My Oders</Link>
-                            </li>
-                            <li className="list-unstyled mx-0 my-2">
-                                <Link to={`${url}/review`} className="text-decoration-none text-light fs-6 fw-bold">Review</Link>
-                            </li>
-                        </div>
+
+                        {
+                            !isAdmin && user?.email && <div>
+                                <div className="for-client">
+                                    <li className="list-unstyled mx-0 my-2">
+                                        <Link to={`${url}`} className="text-decoration-none text-light fs-6 fw-bold">My Oders</Link>
+                                    </li>
+                                    <li className="list-unstyled mx-0 my-2">
+                                        <Link to={`${url}/review`} className="text-decoration-none text-light fs-6 fw-bold">Review</Link>
+                                    </li>
+                                </div>
+                            </div>
+                        }
+
                         {/* for addmin */}
 
-                        <div className="admin">
-                            <li className="list-unstyled mx-0 my-2">
-                                <Link to={`${url}/manageallOder`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Oder</Link>
-                            </li>
-                            <li className="list-unstyled mx-0 my-2">
-                                <Link to={`${url}/addservice`} className="text-decoration-none text-light fs-6 fw-bold">Add New Service</Link>
-                            </li>
-                            <li className="list-unstyled mx-0 my-2">
-                                <Link to={`${url}/manageAllServices`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Services</Link>
-                            </li>
-                            <li className="list-unstyled mx-0 my-2">
-                                <Link to={`${url}/makeadmin`} className="text-decoration-none text-light fs-6 fw-bold">Make Addmin</Link>
-                            </li>
-                        </div>
+                        {
+                            isAdmin && user?.email && <div className="admin">
+                                <li className="list-unstyled mx-0 my-2">
+                                    <Link to={`${url}/manageallOder`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Oder</Link>
+                                </li>
+                                <li className="list-unstyled mx-0 my-2">
+                                    <Link to={`${url}/addservice`} className="text-decoration-none text-light fs-6 fw-bold">Add New Service</Link>
+                                </li>
+                                <li className="list-unstyled mx-0 my-2">
+                                    <Link to={`${url}/manageAllServices`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Services</Link>
+                                </li>
+                                <li className="list-unstyled mx-0 my-2">
+                                    <Link to={`${url}/makeadmin`} className="text-decoration-none text-light fs-6 fw-bold">Make Addmin</Link>
+                                </li>
+                            </div>
+                        }
                     </div>
 
                 </div>

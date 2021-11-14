@@ -10,10 +10,15 @@ const MangeAllService = () => {
     }, [allServices]);
 
     const handleDelete = (id) => {
-        alert(id)
-        fetch(`https://frozen-anchorage-07301.herokuapp.com/services/${id}`, {
-            method: 'DELETE'
-        })
+        // alert(id)
+
+        const isDelete = window.confirm('are you sure delete');
+        if (isDelete) {
+            fetch(`https://frozen-anchorage-07301.herokuapp.com/services/${id}`, {
+                method: 'DELETE'
+            }).then()
+        }
+
     }
     return (
         <div>
