@@ -8,6 +8,7 @@ import AddService from '../AddService/AddService';
 import AllOders from '../AllOders/AllOders';
 import MangeAllService from '../MangeAllService/MangeAllService';
 import useAuth from '../../../hooks/useAuth';
+import Payment from '../Payment/Payment';
 
 
 const DashBoard = () => {
@@ -36,10 +37,13 @@ const DashBoard = () => {
                         {
                             isAdmin?.result ? <div className="admin">
                                 <li className="list-unstyled mx-0 my-2">
+                                    <Link to={`${url}/payment`} className="text-decoration-none text-light fs-6 fw-bold">Payment System</Link>
+                                </li>
+                                <li className="list-unstyled mx-0 my-2">
                                     <Link to={`${url}/manageallOder`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Oder</Link>
                                 </li>
                                 <li className="list-unstyled mx-0 my-2">
-                                    <Link to={`${url}//addservice`} className="text-decoration-none text-light fs-6 fw-bold">Add New Service</Link>
+                                    <Link to={`${url}/addservice`} className="text-decoration-none text-light fs-6 fw-bold">Add New Service</Link>
                                 </li>
                                 <li className="list-unstyled mx-0 my-2">
                                     <Link to={`${url}/manageAllServices`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Services</Link>
@@ -55,8 +59,12 @@ const DashBoard = () => {
                                     <Link to={`${url}/myoder`} className="text-decoration-none text-light fs-6 fw-bold">My Oders</Link>
                                 </li>
                                 <li className="list-unstyled mx-0 my-2">
+                                    <Link to={`${url}/payment`} className="text-decoration-none text-light fs-6 fw-bold">Payment System</Link>
+                                </li>
+                                <li className="list-unstyled mx-0 my-2">
                                     <Link to={`${url}/review`} className="text-decoration-none text-light fs-6 fw-bold">Review</Link>
                                 </li>
+                                <button onClick={logOut} className="btn btn-success">Log Out</button>
                             </div>
                         }
 
@@ -78,6 +86,9 @@ const DashBoard = () => {
                         <Route exact path={`${path}/myoder`}>
                             <MyOders></MyOders>
                         </Route>
+                        <Route exact path={`${path}/payment`}>
+                            <Payment></Payment>
+                        </Route>
                         <Route exact path={`${path}/review`}>
                             <Review></Review>
                         </Route>
@@ -88,6 +99,9 @@ const DashBoard = () => {
                     {/* For Admin  */}
 
                     <Switch>
+                        <Route exact path={`${path}/payment`}>
+                            <Payment></Payment>
+                        </Route>
                         <Route exact path={`${path}/addservice`}>
                             <AddService></AddService>
                         </Route>
