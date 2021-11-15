@@ -14,6 +14,9 @@ const NavMenu = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto">
 
+                        <Link to="/home" className="text-decoration-none mx-2 fw-bold">
+                            Home
+                        </Link>
                         <Link to="/allservice" className="text-decoration-none mx-2 fw-bold">
                             All Services
                         </Link>
