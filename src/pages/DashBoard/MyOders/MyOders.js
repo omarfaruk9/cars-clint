@@ -10,18 +10,18 @@ const MyOders = () => {
         fetch(`https://frozen-anchorage-07301.herokuapp.com/myOders/${user.email}`)
             .then(res => res.json())
             .then(data => setMyOders(data))
-    }, []);
+    }, [myOders]);
 
     // delte oders 
     const handleDelete = (id) => {
         const isDelete = window.confirm("are yoy want to delete your oders");
         if (isDelete) {
-            fetch(`https://frozen-anchorage-07301.herokuapp.com/admindeleteoders/${id}`, {
+            fetch(`https://frozen-anchorage-07301.herokuapp.com/delteoders/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json)
                 .then(data => {
-                    console.log(data);
+                    console.log('dsssss');
                 })
         }
 
