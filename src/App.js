@@ -8,6 +8,7 @@ import AddService from './pages/DashBoard/AddService/AddService';
 import DashBoard from './pages/DashBoard/DashBoard/DashBoard';
 import Home from './pages/Home/Home/Home';
 import Login from './pages/Login/Login';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Register from './pages/Register/Register';
 import Footer from './pages/Shared/Footer/Footer';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
@@ -40,6 +41,9 @@ function App() {
             </Route>
             <PrivateRoute path="/dashboard">
               <DashBoard></DashBoard>
+            </PrivateRoute>
+            <PrivateRoute path="*">
+              <PageNotFound></PageNotFound>
             </PrivateRoute>
           </Switch>
           <Footer></Footer>

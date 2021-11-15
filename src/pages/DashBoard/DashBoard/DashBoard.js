@@ -11,7 +11,7 @@ import useAuth from '../../../hooks/useAuth';
 
 
 const DashBoard = () => {
-    const { isAdmin, user } = useAuth();
+    const { isAdmin, logOut } = useAuth();
     console.log(isAdmin);
     let { path, url } = useRouteMatch();
     return (
@@ -29,28 +29,17 @@ const DashBoard = () => {
                             </li>
                         </div>
 
-                        {
-                            !isAdmin && user?.email && <div>
-                                <div className="for-client">
-                                    <li className="list-unstyled mx-0 my-2">
-                                        <Link to={`${url}`} className="text-decoration-none text-light fs-6 fw-bold">My Oders</Link>
-                                    </li>
-                                    <li className="list-unstyled mx-0 my-2">
-                                        <Link to={`${url}/review`} className="text-decoration-none text-light fs-6 fw-bold">Review</Link>
-                                    </li>
-                                </div>
-                            </div>
-                        }
 
-                        {/* for addmin */}
+
+
 
                         {
-                            <div className="admin">
+                            isAdmin?.result ? <div className="admin">
                                 <li className="list-unstyled mx-0 my-2">
                                     <Link to={`${url}/manageallOder`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Oder</Link>
                                 </li>
                                 <li className="list-unstyled mx-0 my-2">
-                                    <Link to={`${url}/addservice`} className="text-decoration-none text-light fs-6 fw-bold">Add New Service</Link>
+                                    <Link to={`${url}//addservice`} className="text-decoration-none text-light fs-6 fw-bold">Add New Service</Link>
                                 </li>
                                 <li className="list-unstyled mx-0 my-2">
                                     <Link to={`${url}/manageAllServices`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Services</Link>
@@ -58,8 +47,25 @@ const DashBoard = () => {
                                 <li className="list-unstyled mx-0 my-2">
                                     <Link to={`${url}/makeadmin`} className="text-decoration-none text-light fs-6 fw-bold">Make Addmin</Link>
                                 </li>
+
+                                <button onClick={logOut} className="btn btn-success">Log Out</button>
+
+                            </div> : <div className="for-client">
+                                <li className="list-unstyled mx-0 my-2">
+                                    <Link to={`${url}/myoder`} className="text-decoration-none text-light fs-6 fw-bold">My Oders</Link>
+                                </li>
+                                <li className="list-unstyled mx-0 my-2">
+                                    <Link to={`${url}/review`} className="text-decoration-none text-light fs-6 fw-bold">Review</Link>
+                                </li>
                             </div>
                         }
+
+                        {/* for addmin */}
+
+
+
+
+
                     </div>
 
                 </div>
@@ -69,13 +75,15 @@ const DashBoard = () => {
                     {/* For Client */}
 
                     <Switch>
-                        <Route exact path={`${path}`}>
+                        <Route exact path={`${path}/myoder`}>
                             <MyOders></MyOders>
                         </Route>
                         <Route exact path={`${path}/review`}>
                             <Review></Review>
                         </Route>
                     </Switch>
+
+
 
                     {/* For Admin  */}
 
@@ -93,6 +101,7 @@ const DashBoard = () => {
                             <Admin></Admin>
                         </Route>
                     </Switch>
+
 
                 </div>
 

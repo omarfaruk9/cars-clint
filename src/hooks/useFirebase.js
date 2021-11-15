@@ -12,7 +12,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
-    // console.log(isAdmin);
+    console.log(isAdmin);
     const [isLoding, setIsLoading] = useState(true);
 
 
@@ -108,11 +108,11 @@ const useFirebase = () => {
         fetch(`https://frozen-anchorage-07301.herokuapp.com/admin/${user.email}`)
             .then(res => res.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 setIsAdmin(result)
-                // console.log(result.admin);
+                console.log(result);
             })
-    }, [user.email]);
+    }, [user?.email]);
 
     return {
         user,

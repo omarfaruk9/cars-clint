@@ -21,14 +21,9 @@ const Admin = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
             })
-        swal({
-            title: "Good job!",
-            text: "You clicked the button!",
-            icon: "success",
-            button: "Aww yiss!",
-        });
-        setEmail('');
+        alert('addmin maked now')
 
     }
 
