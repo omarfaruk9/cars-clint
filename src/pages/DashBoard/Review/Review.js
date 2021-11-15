@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { Rating } from 'react-simple-star-rating'
+import swal from 'sweetalert';
 import useAuth from '../../../hooks/useAuth';
 
 const Review = () => {
@@ -38,7 +39,17 @@ const Review = () => {
             },
             body: JSON.stringify(newReview)
         })
-            .then()
+            .then(res => res.json())
+            .then(data => {
+                swal({
+                    title: "Thank You!",
+                    text: "Your Review Submited!",
+                    icon: "success",
+                    button: "Done!",
+                });
+            })
+        handleRating('')
+        reviewRef.current.value = '';
 
     }
     return (

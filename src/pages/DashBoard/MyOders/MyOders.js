@@ -14,29 +14,17 @@ const MyOders = () => {
 
     // delte oders 
     const handleDelete = (id) => {
-        fetch(`https://frozen-anchorage-07301.herokuapp.com/admindeleteoders/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json)
-            .then(data => {
-                console.log(data);
+        const isDelete = window.confirm("are yoy want to delete your oders");
+        if (isDelete) {
+            fetch(`https://frozen-anchorage-07301.herokuapp.com/admindeleteoders/${id}`, {
+                method: 'DELETE'
             })
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
-                        icon: "success",
-                    });
-                } else {
-                    swal("Your imaginary file is safe!");
-                }
-            });
+                .then(res => res.json)
+                .then(data => {
+                    console.log(data);
+                })
+        }
+
     }
 
 

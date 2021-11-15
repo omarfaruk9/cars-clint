@@ -38,9 +38,9 @@ const useFirebase = () => {
     // add user database 
     const handleAdduser = (email, userName) => {
         // alert(email, userName, method)
-        console.log(email, userName);
+        // console.log(email, userName);
         const newUser = { email, userName }
-        console.log(newUser);
+        // console.log(newUser);
         fetch("https://frozen-anchorage-07301.herokuapp.com/users", {
             method: "POST",
             headers: {

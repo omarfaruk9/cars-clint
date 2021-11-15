@@ -15,12 +15,12 @@ const Reviews = () => {
     return (
         <Container className="my-5">
             <div>
-                <h1 className="fw-bolder my-5 text-success">Customers Reviews</h1>
+                <h1 className="fw-bolder my-5 text-success text-center">Customers Reviews</h1>
             </div>
             <div className="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
                 {
                     reviews.map(review => <Review
-                        review={review}
+                        reviewa={review}
                     ></Review>)
                 }
             </div>

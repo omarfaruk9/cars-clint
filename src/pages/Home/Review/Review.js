@@ -1,16 +1,17 @@
 import React from 'react';
 import { RatingView } from 'react-simple-star-rating'
 
-const Review = ({ review }) => {
-    const { name, info, rating, img } = review;
+const Review = ({ reviewa }) => {
+    const { name, review, rating, image } = reviewa;
+    console.log(reviewa);
     return (
         <div>
             <div className="">
-                <img src={img} className="img-fluid" alt="" />
-                <div className="">
-                    <h2>{name}</h2>
-                    <h3>Rating:  <RatingView ratingValue={rating} /* RatingView Props */ /></h3>
-                    <p>{info}</p>
+                <img src={image} className="img" alt="" />
+                <div className=" text-center">
+                    <h3>{name}</h3>
+                    <h5>Rating:  <RatingView ratingValue={rating} /* RatingView Props */ /></h5>
+                    <p>{review}</p>
                 </div>
             </div>
         </div>

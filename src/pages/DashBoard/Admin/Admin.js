@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
+import swal from 'sweetalert';
 
 const Admin = () => {
     const [email, setEmail] = useState('');
-    console.log(email);
+    // console.log(email);
 
     const handleOnBlur = (e) => {
         setEmail(e.target.value);
-        console.log(email);
+        // console.log(email);
     }
 
     const handleMakeAdmin = e => {
@@ -18,6 +19,17 @@ const Admin = () => {
                 "content-type": "application/json"
             }
         })
+            .then(res => res.json())
+            .then(data => {
+            })
+        swal({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success",
+            button: "Aww yiss!",
+        });
+        setEmail('');
+
     }
 
     return (

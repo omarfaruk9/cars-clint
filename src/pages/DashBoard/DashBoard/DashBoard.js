@@ -8,7 +8,7 @@ import AddService from '../AddService/AddService';
 import AllOders from '../AllOders/AllOders';
 import MangeAllService from '../MangeAllService/MangeAllService';
 import useAuth from '../../../hooks/useAuth';
-import userEvent from '@testing-library/user-event';
+
 
 const DashBoard = () => {
     const { isAdmin, user } = useAuth();
@@ -45,7 +45,7 @@ const DashBoard = () => {
                         {/* for addmin */}
 
                         {
-                            isAdmin && user?.email && <div className="admin">
+                            <div className="admin">
                                 <li className="list-unstyled mx-0 my-2">
                                     <Link to={`${url}/manageallOder`} className="text-decoration-none text-light fs-6 fw-bold">Manage All Oder</Link>
                                 </li>
